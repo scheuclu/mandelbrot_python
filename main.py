@@ -1,18 +1,6 @@
 
 import numpy as np
-import matplotlib.pyplot as plt
 from PIL import Image
-import cmath
-
-center=(-0.7450450892059, 0.1126120218022)
-N=1500
-# w=1.92*0.00000000000002
-# h=1.08*0.00000000000002
-w=1.92*2.0000000000000
-h=1.08*2.0000000000000
-nw=192*20
-nh=108*20
-suffix=1
 
   
 PI=3.14159265359
@@ -28,8 +16,8 @@ def create_frame(
     center=(-0.7451580000099, 0.11257483),
     w=1.92*.0002,
     h=1.08*.0002,
-    nw=192*10,
-    nh=108*10,
+    nw=192*2,
+    nh=108*2,
     suffix=1):
   
     Z=np.zeros(shape=(nh,nw), dtype=complex)
@@ -46,17 +34,31 @@ def create_frame(
     colors = iter2color(Z_final)
     img = Image.fromarray(np.uint8(colors*255))
     img.save(f'./output/test_{suffix}.png')
+    return img
+
+def main():
+    center = (-0.7450450892059, 0.1126120218022)
+    N = 5
+    # w=1.92*0.00000000000002
+    # h=1.08*0.00000000000002
+    w = 1.92 * 2.0000000000000
+    h = 1.08 * 2.0000000000000
+    nw = 192 * 20
+    nh = 108 * 20
+    suffix = 1
+
+    for i in range(N):
+        create_frame(
+            center=center,
+            w=w,
+            h=h,
+            nw=nw,
+            nh=nh,
+            suffix=i)
+        w*=0.98
+        h*=0.98
+        print(i, center, (w,h))
 
 
-
-for i in range(N):
-    colors = create_frame(
-        center=center,
-        w=w,
-        h=h,
-        nw=nw,
-        nh=nh,
-        suffix=i)
-    w*=0.98
-    h*=0.98
-    print(i, center, (w,h))
+if __name__ == "__main__":
+    main()
