@@ -33,7 +33,6 @@ def create_frame(
 
     colors = iter2color(Z_final)
     img = Image.fromarray(np.uint8(colors*255))
-    img.save(f'./output/test_{suffix}.png')
     return img
 
 def main():
