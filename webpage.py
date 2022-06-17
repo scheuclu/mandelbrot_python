@@ -79,7 +79,7 @@ with c22:
     download_button = st.download_button(
         label="Download image",
         data=imgByteArr.getvalue(),
-        file_name=f"mandelbrot_{st.session_state.resolution}",
+        file_name=f"mandelbrot_{st.session_state.resolution}.png",
         mime="image/png")
 
 
